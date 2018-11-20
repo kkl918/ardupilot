@@ -319,9 +319,9 @@ void Copter::update_batt_compass(void)
         compass.set_voltage(battery.voltage());
         compass.read();
         // log compass information
-        if (should_log(MASK_LOG_COMPASS) && !ahrs.have_ekf_logging()) {
-            DataFlash.Log_Write_Compass();
-        }
+        // if (should_log(MASK_LOG_COMPASS) && !ahrs.have_ekf_logging()) {
+            // DataFlash.Log_Write_Compass();
+        // }
     }
 }
 
@@ -329,49 +329,50 @@ void Copter::update_batt_compass(void)
 // should be run at 400hz
 void Copter::fourhundred_hz_logging()
 {
-    if (should_log(MASK_LOG_ATTITUDE_FAST)) {
-        Log_Write_Attitude();
-    }
+    
+    // if (should_log(MASK_LOG_ATTITUDE_FAST)) {
+        // Log_Write_Attitude();
+    // }
 }
 
 // ten_hz_logging_loop
 // should be run at 10hz
 void Copter::ten_hz_logging_loop()
 {
-    // log attitude data if we're not already logging at the higher rate
+    //log attitude data if we're not already logging at the higher rate
     if (should_log(MASK_LOG_ATTITUDE_MED) && !should_log(MASK_LOG_ATTITUDE_FAST)) {
         Log_Write_Attitude();
-        Log_Write_EKF_POS();
+        //Log_Write_EKF_POS();
     }
-    if (should_log(MASK_LOG_MOTBATT)) {
-        Log_Write_MotBatt();
-    }
-    if (should_log(MASK_LOG_RCIN)) {
-        DataFlash.Log_Write_RCIN();
-        if (rssi.enabled()) {
-            DataFlash.Log_Write_RSSI(rssi);
-        }
-    }
-    if (should_log(MASK_LOG_RCOUT)) {
-        DataFlash.Log_Write_RCOUT();
-    }
-    if (should_log(MASK_LOG_NTUN) && (flightmode->requires_GPS() || landing_with_GPS())) {
-        pos_control->write_log();
-    }
-    if (should_log(MASK_LOG_IMU) || should_log(MASK_LOG_IMU_FAST) || should_log(MASK_LOG_IMU_RAW)) {
-        DataFlash.Log_Write_Vibration();
-    }
-    if (should_log(MASK_LOG_CTUN)) {
-        attitude_control->control_monitor_log();
+    // if (should_log(MASK_LOG_MOTBATT)) {
+        // Log_Write_MotBatt();
+    // }
+    // if (should_log(MASK_LOG_RCIN)) {
+        // DataFlash.Log_Write_RCIN();
+        // if (rssi.enabled()) {
+            // DataFlash.Log_Write_RSSI(rssi);
+        // }
+    // }
+    // if (should_log(MASK_LOG_RCOUT)) {
+        // DataFlash.Log_Write_RCOUT();
+    // }
+    // if (should_log(MASK_LOG_NTUN) && (flightmode->requires_GPS() || landing_with_GPS())) {
+        // pos_control->write_log();
+    //}
+    // if (should_log(MASK_LOG_IMU) || should_log(MASK_LOG_IMU_FAST) || should_log(MASK_LOG_IMU_RAW)) {
+        // DataFlash.Log_Write_Vibration();
+    // }
+    // if (should_log(MASK_LOG_CTUN)) {
+        // attitude_control->control_monitor_log();
 #if PROXIMITY_ENABLED == ENABLED
-        DataFlash.Log_Write_Proximity(g2.proximity);  // Write proximity sensor distances
+        // DataFlash.Log_Write_Proximity(g2.proximity);  // Write proximity sensor distances
 #endif
 #if BEACON_ENABLED == ENABLED
-        DataFlash.Log_Write_Beacon(g2.beacon);
+        // DataFlash.Log_Write_Beacon(g2.beacon);
 #endif
-    }
+    //}
 #if FRAME_CONFIG == HELI_FRAME
-    Log_Write_Heli();
+    // Log_Write_Heli();
 #endif
 }
 
@@ -384,19 +385,19 @@ void Copter::twentyfive_hz_logging()
 #endif
 
 #if HIL_MODE == HIL_MODE_DISABLED
-    if (should_log(MASK_LOG_ATTITUDE_FAST)) {
-        Log_Write_EKF_POS();
-    }
+    // if (should_log(MASK_LOG_ATTITUDE_FAST)) {
+        // Log_Write_EKF_POS();
+    // }
 
     // log IMU data if we're not already logging at the higher rate
-    if (should_log(MASK_LOG_IMU) && !should_log(MASK_LOG_IMU_RAW)) {
-        DataFlash.Log_Write_IMU();
-    }
+    // if (should_log(MASK_LOG_IMU) && !should_log(MASK_LOG_IMU_RAW)) {
+        // DataFlash.Log_Write_IMU();
+    // }
 #endif
 
 #if PRECISION_LANDING == ENABLED
     // log output
-    Log_Write_Precland();
+    // Log_Write_Precland();
 #endif
 }
 
@@ -422,9 +423,9 @@ void Copter::three_hz_loop()
 // one_hz_loop - runs at 1Hz
 void Copter::one_hz_loop()
 {
-    if (should_log(MASK_LOG_ANY)) {
-        Log_Write_Data(DATA_AP_STATE, ap.value);
-    }
+    // if (should_log(MASK_LOG_ANY)) {
+        // Log_Write_Data(DATA_AP_STATE, ap.value);
+    // }
 
     arming.update();
 
@@ -499,9 +500,9 @@ void Copter::init_simple_bearing()
     super_simple_sin_yaw = simple_sin_yaw;
 
     // log the simple bearing to dataflash
-    if (should_log(MASK_LOG_ANY)) {
-        Log_Write_Data(DATA_INIT_SIMPLE_BEARING, ahrs.yaw_sensor);
-    }
+    // if (should_log(MASK_LOG_ANY)) {
+        // Log_Write_Data(DATA_INIT_SIMPLE_BEARING, ahrs.yaw_sensor);
+    // }
 }
 
 // update_simple_mode - rotates pilot input if we are in simple mode
@@ -578,9 +579,9 @@ void Copter::update_altitude()
     read_barometer();
 
     // write altitude info to dataflash logs
-    if (should_log(MASK_LOG_CTUN)) {
-        Log_Write_Control_Tuning();
-    }
+    // if (should_log(MASK_LOG_CTUN)) {
+        // Log_Write_Control_Tuning();
+    // }
 }
 
 #if OSD_ENABLED == ENABLED

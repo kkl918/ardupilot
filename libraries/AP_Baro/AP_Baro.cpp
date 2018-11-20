@@ -804,9 +804,9 @@ void AP_Baro::update(void)
     }
 
     // logging
-    if (should_df_log() && !AP::ahrs().have_ekf_logging()) {
-        DataFlash_Class::instance()->Log_Write_Baro();
-    }
+    // if (should_df_log() && !AP::ahrs().have_ekf_logging()) {
+        // DataFlash_Class::instance()->Log_Write_Baro();
+    // }
 }
 
 /*
