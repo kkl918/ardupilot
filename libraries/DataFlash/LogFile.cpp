@@ -159,6 +159,7 @@ void DataFlash_Class::Log_Write_GPS(uint8_t i, uint64_t time_us)
     WriteBlock(&pkt, sizeof(pkt));
 
     /* write auxiliary accuracy information as well */
+    /*
     float hacc = 0, vacc = 0, sacc = 0;
     gps.horizontal_accuracy(i, hacc);
     gps.vertical_accuracy(i, vacc);
@@ -175,6 +176,7 @@ void DataFlash_Class::Log_Write_GPS(uint8_t i, uint64_t time_us)
         delta_ms      : gps.last_message_delta_time_ms(i)
     };
     WriteBlock(&pkt2, sizeof(pkt2));
+    */
 }
 
 

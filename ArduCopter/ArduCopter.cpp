@@ -329,10 +329,11 @@ void Copter::update_batt_compass(void)
 // should be run at 400hz
 void Copter::fourhundred_hz_logging()
 {
-    
-    // if (should_log(MASK_LOG_ATTITUDE_FAST)) {
-        // Log_Write_Attitude();
-    // }
+
+     //if (should_log(MASK_LOG_ATTITUDE_FAST)) {
+        Log_Write_Attitude();
+        //Log_Write_EKF_POS();
+     //}
 }
 
 // ten_hz_logging_loop
@@ -340,10 +341,11 @@ void Copter::fourhundred_hz_logging()
 void Copter::ten_hz_logging_loop()
 {
     //log attitude data if we're not already logging at the higher rate
-    if (should_log(MASK_LOG_ATTITUDE_MED) && !should_log(MASK_LOG_ATTITUDE_FAST)) {
-        Log_Write_Attitude();
+    //if (should_log(MASK_LOG_ATTITUDE_MED) && !should_log(MASK_LOG_ATTITUDE_FAST)) {
+    //if (should_log(MASK_LOG_ATTITUDE_MED) && !should_log(MASK_LOG_ATTITUDE_FAST)) {
+        //Log_Write_Attitude();
         //Log_Write_EKF_POS();
-    }
+    //}
     // if (should_log(MASK_LOG_MOTBATT)) {
         // Log_Write_MotBatt();
     // }
@@ -448,7 +450,7 @@ void Copter::one_hz_loop()
     SRV_Channels::enable_aux_servos();
 
     // log terrain data
-    terrain_logging();
+    //terrain_logging();
 
 #if ADSB_ENABLED == ENABLED
     adsb.set_is_flying(!ap.land_complete);

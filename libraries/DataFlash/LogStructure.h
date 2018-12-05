@@ -173,6 +173,7 @@ struct PACKED log_GPS {
     float    ground_course;
     float    vel_z;
     uint8_t  used;
+
 };
 
 struct PACKED log_GPA {
