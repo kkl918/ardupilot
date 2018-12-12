@@ -659,6 +659,20 @@ struct PACKED log_Camera {
     uint16_t yaw;
 };
 
+// modify 20181212
+struct PACKED log_Attitude_2 {
+    LOG_PACKET_HEADER;
+    uint64_t time_us;
+    int16_t  roll;
+    int16_t  pitch;
+    uint16_t yaw;
+    float    acc_x;
+    float    acc_y;
+    float    acc_z;
+    uint16_t error_rp;
+    uint16_t error_yaw;
+};
+
 struct PACKED log_Attitude {
     LOG_PACKET_HEADER;
     uint64_t time_us;

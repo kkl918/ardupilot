@@ -112,19 +112,28 @@ void Copter::Log_Write_Control_Tuning()
     DataFlash.WriteBlock(&pkt, sizeof(pkt));
 }
 
+// Write an IMU packet
+void Copter::Log_Write_IMU()
+{ 
+    DataFlash.Log_Write_IMU();
+}
+
 // Write an attitude packet
 void Copter::Log_Write_Attitude()
 {
     Vector3f targets = attitude_control->get_att_target_euler_cd();
     targets.z = wrap_360_cd(targets.z);
+    
     DataFlash.Log_Write_Attitude(ahrs, targets);
     //DataFlash.Log_Write_Rate(ahrs, *motors, *attitude_control, *pos_control);
+    /*
     if (should_log(MASK_LOG_PID)) {
         DataFlash.Log_Write_PID(LOG_PIDR_MSG, attitude_control->get_rate_roll_pid().get_pid_info());
         DataFlash.Log_Write_PID(LOG_PIDP_MSG, attitude_control->get_rate_pitch_pid().get_pid_info());
         DataFlash.Log_Write_PID(LOG_PIDY_MSG, attitude_control->get_rate_yaw_pid().get_pid_info());
         DataFlash.Log_Write_PID(LOG_PIDA_MSG, pos_control->get_accel_z_pid().get_pid_info() );
     }
+    */
 }
 
 // Write an EKF and POS packet
@@ -523,6 +532,7 @@ void Copter::log_init(void)
 }
 
 #else // LOGGING_ENABLED
+void Copter::Log_Write_IMU() {}
 
 void Copter::Log_Write_Control_Tuning() {}
 void Copter::Log_Write_Performance() {}

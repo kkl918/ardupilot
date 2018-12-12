@@ -234,34 +234,34 @@ void Copter::fast_loop()
     ins.update();
 
     // run low level rate controllers that only require IMU data
-    attitude_control->rate_controller_run();
+    //attitude_control->rate_controller_run();
 
     // send outputs to the motors library immediately
-    motors_output();
+    //motors_output();
 
     // run EKF state estimator (expensive)
     // --------------------
     read_AHRS();
 
-#if FRAME_CONFIG == HELI_FRAME
-    update_heli_control_dynamics();
-#endif //HELI_FRAME
-
     // Inertial Nav
     // --------------------
-    read_inertia();
+    //read_inertia();
 
     // check if ekf has reset target heading or position
-    check_ekf_reset();
+    //check_ekf_reset();
 
     // run the attitude controllers
-    update_flight_mode();
+    //update_flight_mode();
 
     // update home from EKF if necessary
-    update_home_from_EKF();
+    //update_home_from_EKF();
 
     // check if we've landed or crashed
-    update_land_and_crash_detectors();
+    //update_land_and_crash_detectors();
+    
+    // 20181205 add for test
+    Log_Write_Attitude();
+    Log_Write_IMU();
 
 #if MOUNT == ENABLED
     // camera mount's fast update
@@ -331,7 +331,7 @@ void Copter::fourhundred_hz_logging()
 {
 
      //if (should_log(MASK_LOG_ATTITUDE_FAST)) {
-        Log_Write_Attitude();
+        //Log_Write_Attitude();
         //Log_Write_EKF_POS();
      //}
 }
