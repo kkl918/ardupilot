@@ -1283,8 +1283,8 @@ Format characters in the format string for binary log messages
       "BCL8", CURR_CELL_FMT, CURR_CELL_LABELS, CURR_CELL_UNITS, CURR_CELL_MULTS }, \
     { LOG_CURRENT_CELLS9_MSG, sizeof(log_Current_Cells), \
       "BCL9", CURR_CELL_FMT, CURR_CELL_LABELS, CURR_CELL_UNITS, CURR_CELL_MULTS }, \
-	{ LOG_ATTITUDE_MSG, sizeof(log_Attitude),\
-      "ATT", "QccccCCCC", "TimeUS,DesRoll,Roll,DesPitch,Pitch,DesYaw,Yaw,ErrRP,ErrYaw", "sddddhhdh", "FBBBBBBBB" }, \
+	{ LOG_ATTITUDE_MSG, sizeof(log_Attitude_2),\
+      "ATT", "QccCfffCC", "TimeUS,Roll,Pitch,Yaw,AcX,AcY,AcZ,ErrRP,ErrYaw", "sddfdhhdh", "FBBB000BB" }, \
     { LOG_COMPASS_MSG, sizeof(log_Compass), \
       "MAG", MAG_FMT,    MAG_LABELS, MAG_UNITS, MAG_MULTS }, \
     { LOG_MODE_MSG, sizeof(log_Mode), \
