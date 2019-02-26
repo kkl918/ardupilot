@@ -12,6 +12,8 @@
 #include <AC_AttitudeControl/AC_PosControl.h>
 #include <AP_RangeFinder/RangeFinder_Backend.h>
 
+
+
 #include "DataFlash.h"
 #include "DataFlash_File.h"
 #include "DataFlash_File_sd.h"
@@ -19,6 +21,8 @@
 #include "DataFlash_Revo.h"
 #include "DataFlash_File_sd.h"
 #include "DFMessageWriter.h"
+
+
 
 extern const AP_HAL::HAL& hal;
 
@@ -514,9 +518,9 @@ void DataFlash_Class::Log_Write_EKF(AP_AHRS_NavEKF &ahrs)
         Log_Write_EKF2(ahrs);
     }
     // only log EKF3 if enabled
-    if (ahrs.get_NavEKF3().activeCores() > 0) {
-        Log_Write_EKF3(ahrs);
-    }
+    // if (ahrs.get_NavEKF3().activeCores() > 0) {
+        // Log_Write_EKF3(ahrs);
+    // }
 }
 
 
@@ -579,7 +583,7 @@ void DataFlash_Class::Log_Write_EKF2(AP_AHRS_NavEKF &ahrs)
         originHgt : originLLH.alt // WGS-84 altitude of EKF origin in cm
     };
     WriteBlock(&pkt, sizeof(pkt));
-
+/*
     // Write second EKF packet
     float azbias = 0;
     Vector3f wind;
@@ -876,7 +880,7 @@ void DataFlash_Class::Log_Write_EKF2(AP_AHRS_NavEKF &ahrs)
             ahrs.get_NavEKF2().getTimingStatistics(i, timing);
             Log_Write_EKF_Timing(i==0?"NKT1":"NKT2", time_us, timing);
         }
-    }
+    }*/
 }
 
 
@@ -1370,9 +1374,9 @@ void DataFlash_Class::Log_Write_Attitude(AP_AHRS &ahrs, const Vector3f &targets)
         roll            : (int16_t)  ahrs.roll_sensor,
         pitch           : (int16_t)  ahrs.pitch_sensor,
         yaw             : (uint16_t) ahrs.yaw_sensor,
-        acc_x           : (float)    ahrs.get_accel_ef().x,
-        acc_y           : (float)    ahrs.get_accel_ef().y,
-        acc_z           : (float)    ahrs.get_accel_ef().z,
+        acc_x           : (float)    ahrs.get_accel_ef(0).x,
+        acc_y           : (float)    ahrs.get_accel_ef(0).y,
+        acc_z           : (float)    ahrs.get_accel_ef(0).z,
         error_rp        : (uint16_t)(ahrs.get_error_rp() * 100),
         error_yaw       : (uint16_t)(ahrs.get_error_yaw() * 100)
     };

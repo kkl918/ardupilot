@@ -1090,7 +1090,7 @@ void GCS_MAVLINK::send_raw_imu()
     const AP_InertialSensor &ins = AP::ins();
     const Compass &compass = AP::compass();
     const AP_AHRS &ahrs = AP::ahrs();
-    const Vector3f &accel = ahrs.get_accel_ef_blended();
+    const Vector3f &accel = ahrs.get_accel_ef(0);
     const Vector3f &gyro = ins.get_gyro(0);
     
     

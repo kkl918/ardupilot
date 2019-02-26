@@ -811,6 +811,8 @@ float NavEKF2::getPosDownDerivative(int8_t instance) const
     return 0.0f;
 }
 
+
+
 // This returns the specific forces in the NED frame
 void NavEKF2::getAccelNED(Vector3f &accelNED) const
 {
@@ -818,6 +820,8 @@ void NavEKF2::getAccelNED(Vector3f &accelNED) const
         core[primary].getAccelNED(accelNED);
     }
 }
+
+
 
 // return body axis gyro bias estimates in rad/sec
 void NavEKF2::getGyroBias(int8_t instance, Vector3f &gyroBias) const

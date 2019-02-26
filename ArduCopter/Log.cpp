@@ -1,5 +1,6 @@
 #include "Copter.h"
 
+
 #if LOGGING_ENABLED == ENABLED
 
 // Code to Write and Read packets from DataFlash log memory
@@ -121,6 +122,7 @@ void Copter::Log_Write_IMU()
 // Write an attitude packet
 void Copter::Log_Write_Attitude()
 {
+    //Vector3f get_att_target_euler_cd() const { return _attitude_target_euler_angle*degrees(100.0f); }
     Vector3f targets = attitude_control->get_att_target_euler_cd();
     targets.z = wrap_360_cd(targets.z);
     
@@ -144,7 +146,7 @@ void Copter::Log_Write_EKF_POS()
 #if CONFIG_HAL_BOARD == HAL_BOARD_SITL
     sitl.Log_Write_SIMSTATE(&DataFlash);
 #endif
-    DataFlash.Log_Write_POS(ahrs);
+    DataFlash.Log_Write_EKF(ahrs);
 }
 
 struct PACKED log_MotBatt {

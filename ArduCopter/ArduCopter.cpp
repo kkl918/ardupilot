@@ -261,7 +261,7 @@ void Copter::fast_loop()
     
     // 20181205 add for test
     Log_Write_Attitude();
-    Log_Write_IMU();
+    Log_Write_EKF_POS();
 
 #if MOUNT == ENABLED
     // camera mount's fast update
