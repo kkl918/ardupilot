@@ -1106,7 +1106,7 @@ void GCS_MAVLINK::send_raw_imu()
         AP_HAL::micros(),
         accel.x,
         accel.y,
-        accel.z,
+        accel.z + 9.8,
         gyro.x * 1000.0f,
         gyro.y * 1000.0f,
         gyro.z * 1000.0f,

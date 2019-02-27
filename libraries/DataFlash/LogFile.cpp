@@ -1374,9 +1374,9 @@ void DataFlash_Class::Log_Write_Attitude(AP_AHRS &ahrs, const Vector3f &targets)
         roll            : (int16_t)  ahrs.roll_sensor,
         pitch           : (int16_t)  ahrs.pitch_sensor,
         yaw             : (uint16_t) ahrs.yaw_sensor,
-        acc_x           : (float)    ahrs.get_accel_ef(0).x,
-        acc_y           : (float)    ahrs.get_accel_ef(0).y,
-        acc_z           : (float)    ahrs.get_accel_ef(0).z,
+        acc_x           : (float)    ahrs.get_accel_ef_blended().x,
+        acc_y           : (float)    ahrs.get_accel_ef_blended().y,
+        acc_z           : (float)    ahrs.get_accel_ef_blended().z + 9.8,
         error_rp        : (uint16_t)(ahrs.get_error_rp() * 100),
         error_yaw       : (uint16_t)(ahrs.get_error_yaw() * 100)
     };
